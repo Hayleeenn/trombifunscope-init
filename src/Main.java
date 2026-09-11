@@ -1,4 +1,6 @@
 import data.StudentDao;
+import model.PokemonHeight;
+import model.PokemonType;
 import model.Student;
 
 import java.sql.SQLException;
@@ -37,6 +39,40 @@ public class Main {
             for (Student student : students) {
                 System.out.println(student);
             }
+
+            // Création d'une nouvelle fiche
+            Student student = new Student(
+                    null,
+                    "Sacha",
+                    "Pikachu",
+                    25,
+                    PokemonType.ELECTRIK,
+                    100,
+                    PokemonHeight.M,
+                    false,
+                    "Raichu",
+                    "Forêt",
+                    "Tonnerre",
+                    2,
+                    50,
+                    "Une attaque électrique.",
+                    "Électricité",
+                    3,
+                    80,
+                    "Une attaque très puissante.",
+                    "Sol",
+                    "Pika Pika !",
+                    null,
+                    "https://example.com/pikachu.png"
+            );
+
+            // INSERT en base
+            dao.add(student);
+
+            // Vérification
+            System.out.println("Fiche ajoutée !");
+            System.out.println("Après insertion : " + dao.count()
+                    + " ligne(s) dans la table student.");
 
         } catch (SQLException e) {
             System.out.println("La base n'a pas répondu : " + e.getMessage());

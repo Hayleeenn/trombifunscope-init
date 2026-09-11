@@ -124,4 +124,155 @@ public class StudentDao {
                 resultSet.getObject("catch_date", LocalDate.class),
                 resultSet.getString("avatar_url"));
     }
+
+
+    public void add(Student student) throws SQLException {
+        String sql = """
+        INSERT INTO t_student (
+            first_name,
+            pokemon_name,
+            level,
+            type,
+            health_point,
+            height,
+            is_flying,
+            evolution,
+            natural_environment,
+            gift,
+            gift_cost,
+            gift_damage,
+            gift_text,
+            strength,
+            strength_cost,
+            strength_damage,
+            strength_text,
+            weakness,
+            quote,
+            catch_date,
+            avatar_url
+        )
+        VALUES (
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+        )
+        """;
+
+        try (Connection connection = Database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            // first_name
+            statement.setString(1, student.getFirstName());
+
+            // pokemon_name
+            statement.setString(2, student.getPokemonName());
+
+            // level
+            if (student.getLevel() != null) {
+                statement.setInt(3, student.getLevel());
+            } else {
+                statement.setNull(3, java.sql.Types.INTEGER);
+            }
+
+            // type : ENUM PostgreSQL pokemon_type
+            statement.setObject(
+                    4,
+                    student.getType().getLabel(),
+                    java.sql.Types.OTHER
+            );
+
+            // health_point
+            if (student.getHealthPoint() != null) {
+                statement.setInt(5, student.getHealthPoint());
+            } else {
+                statement.setNull(5, java.sql.Types.INTEGER);
+            }
+
+            // height : ENUM PostgreSQL
+            if (student.getHeight() != null) {
+                statement.setObject(
+                        6,
+                        student.getHeight().name(),
+                        java.sql.Types.OTHER
+                );
+            } else {
+                statement.setNull(6, java.sql.Types.OTHER);
+            }
+
+            // is_flying
+            statement.setBoolean(7, student.isFlying());
+
+            // evolution
+            statement.setString(8, student.getEvolution());
+
+            // natural_environment
+            statement.setString(9, student.getNaturalEnvironment());
+
+            // gift
+            statement.setString(10, student.getGift());
+
+            // gift_cost
+            if (student.getGiftCost() != null) {
+                statement.setInt(11, student.getGiftCost());
+            } else {
+                statement.setNull(11, java.sql.Types.INTEGER);
+            }
+
+            // gift_damage
+            if (student.getGiftDamage() != null) {
+                statement.setInt(12, student.getGiftDamage());
+            } else {
+                statement.setNull(12, java.sql.Types.INTEGER);
+            }
+
+            // gift_text
+            statement.setString(13, student.getGiftText());
+
+            // strength
+            statement.setString(14, student.getStrength());
+
+            // strength_cost
+            if (student.getStrengthCost() != null) {
+                statement.setInt(15, student.getStrengthCost());
+            } else {
+                statement.setNull(15, java.sql.Types.INTEGER);
+            }
+
+            // strength_damage
+            if (student.getStrengthDamage() != null) {
+                statement.setInt(16, student.getStrengthDamage());
+            } else {
+                statement.setNull(16, java.sql.Types.INTEGER);
+            }
+
+            // strength_text
+            statement.setString(17, student.getStrengthText());
+
+            // weakness
+            statement.setString(18, student.getWeakness());
+
+            // quote
+            statement.setString(19, student.getQuote());
+
+            // catch_date
+            if (student.getCatchDate() != null) {
+                statement.setDate(
+                        20,
+                        java.sql.Date.valueOf(student.getCatchDate())
+                );
+            } else {
+                statement.setNull(20, java.sql.Types.DATE);
+            }
+
+            // avatar_url
+            statement.setString(21, student.getAvatarUrl());
+
+            statement.executeUpdate();
+        }
+    }
+
+
+
+
+
+
+
 }
