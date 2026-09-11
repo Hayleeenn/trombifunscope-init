@@ -1,6 +1,8 @@
 import data.StudentDao;
+import model.Student;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Point d'entrée du Trombifunscope.
@@ -18,6 +20,12 @@ public class Main {
         try {
             System.out.println("Liaison établie. Test : " + dao.count()
                     + " ligne(s) dans la table student.");
+
+            List<Student> students = dao.getStudents();
+            for (Student student : students) {
+                System.out.println(student);
+            }
+          
         } catch (SQLException e) {
             System.out.println("La base n'a pas répondu : " + e.getMessage());
         }
