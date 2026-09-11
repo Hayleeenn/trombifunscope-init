@@ -6,8 +6,8 @@ BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'pokemon_type') THEN
         CREATE TYPE pokemon_type
         AS ENUM (
-            'Acier', 'Combat', 'Dragon', 'Eau', 'Électrik', 'Fée', 'Feu', 'Glace', 'Insecte',
-            'Normal', 'Plante', 'Poison', 'Psy', 'Roche', 'Sol', 'Spectre', 'Ténèbres', 'Vol',
+            'Acier', 'Combat', 'Dragon', 'Eau', 'Electrik', 'Fee', 'Feu', 'Glace', 'Insecte',
+            'Normal', 'Plante', 'Poison', 'Psy', 'Roche', 'Sol', 'Spectre', 'Tenebres', 'Vol',
             'Basketator', 'Calinou', 'Faignant', 'Hibou', 'Intelo', 'Machetero',
             'Patriote', 'Phantom', 'Sherlock'
         );

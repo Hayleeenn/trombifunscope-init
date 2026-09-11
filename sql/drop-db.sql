@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS "trombifunscope";
+DROP ROLE IF EXISTS sacha;
+DROP ROLE IF EXISTS admin;

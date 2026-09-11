@@ -1,0 +1,33 @@
+SET client_encoding = 'UTF8';
+SET ROLE admin;
+
+-- Jeu d'essai : une fiche par membre de la promo (18 fiches)
+-- On vide la table et on remet les id à 1 : chaque passage redonne exactement les mêmes données
+BEGIN;
+
+TRUNCATE TABLE t_student RESTART IDENTITY;
+
+INSERT INTO t_student (
+    first_name, pokemon_name, level, type, health_point, height, is_flying, evolution, natural_environment, gift, gift_cost, gift_damage, gift_text, strength, strength_cost, strength_damage, strength_text, weakness, quote, catch_date, avatar_url
+)
+VALUES
+    ('Amine', 'Min''arai', 1, 'Acier', 90, 'M', false, 'Min''araitor', 'Mosque', 'Scratch', 1, 30, 'Assemble trois blocs de couleur et appelle ça une architecture logicielle.', 'Xavier', 2, 60, 'Appelle Xavier en renfort. S''il est dans son fauteuil, l''attaque échoue.', 'Concentration', 'Attends, je me reconcentre.', '2026-09-01', '/img/amine.png'),
+    ('Xavier', 'Xavgoal', 1, 'Tenebres', 110, 'L', false, 'Xavgoal Ultime', 'parc des princes', 'PHP', 2, 50, 'Déploie un site PHP écrit en 2004. Il tourne encore.', 'Son fauteuil', 2, 70, 'S''enfonce dans son fauteuil. Plus personne ne peut le déloger jusqu''à la fin du combat.', 'Amine', 'Ici c''est Paris !', '2026-09-01', '/img/xavier.png'),
+    ('Frank', 'Frankenchips', 1, 'Intelo', 120, 'L', false, 'Frankendaunat', 'bureau', 'Java', 2, 50, 'Écrit une classe, puis une interface, puis une factory pour créer la classe.', 'Chips, daunat + coca', 1, 40, 'Mange un sandwich et boit un coca. Récupère 30 PV.', 'Distributeur vide', 'On fait une pause snack ?', '2026-09-01', '/img/frank.png'),
+    ('Lucie', 'Lucifast', 1, 'Combat', 80, 'S', false, 'Lucisonic', 'bureau', 'Java', 2, 50, 'Compile avant même que le code soit écrit.', 'Rapidité', 1, 60, 'Attaque toujours en premier. Lancez une pièce : si c''est pile, la malléole lâche.', 'Malléole', 'J''ai déjà fini, et vous ?', '2026-09-01', '/img/lucie.png'),
+    ('Rayann', 'Raypointeur', 1, 'Acier', 100, 'M', false, 'Megapointeur', 'Salle serveur', 'C++', 3, 80, 'Alloue la mémoire à la main. Oublie parfois de la libérer.', 'Gestion mémoire', 2, 60, 'Libère d''un coup toute la mémoire de l''adversaire.', 'Segmentation fault', 'Ça compile, donc ça marche.', '2026-09-01', '/img/rayann.png'),
+    ('Mederic', 'Médéricajou', 1, 'Intelo', 90, 'M', false, 'Médéricamande', 'Rayon vrac', 'C#', 2, 50, 'Transforme le moindre projet en solution Visual Studio de 4 Go.', 'fruits sec', 1, 30, 'Grignote une poignée d''amandes. Récupère 20 PV à chaque tour.', 'Sachet vide', 'Quelqu''un veut des cajous ?', '2026-09-01', '/img/mederic.png'),
+    ('Dominga', 'Domin''geek', 1, 'Intelo', 100, 'M', false, 'Domin''giga', 'equateur', 'Typescript', 2, 60, 'Ajoute des types partout. Les bugs de l''adversaire sont révélés avant le combat.', 'Typage strict', 2, 50, 'Refuse toute attaque de type any.', 'Banane equatorienne', 'Ça ne compile pas ? Tant mieux.', '2026-09-01', '/img/dominga.png'),
+    ('Léa', 'Lea''scoute', 1, 'Hibou', 70, 'S', true, 'Lea''nuit', 'sombre grotte', 'COBOL', 3, 90, 'Réveille un programme bancaire de 1970. Personne ne sait l''arrêter.', 'Nihiliste', 1, 0, 'Rien n''a de sens. Cette attaque non plus.', 'Clown', 'À quoi bon ?', '2026-09-01', '/img/lea.png'),
+    ('Hélène', 'Gourmhelene', 1, 'Fee', 150, 'M', true, 'Gourmhélène Royale', 'friigot', 'Python', 1, 40, 'Résout le problème en trois lignes et une bibliothèque.', 'Engloutir', 2, 80, 'Engloutit le goûter de l''adversaire. Il passe son prochain tour.', 'Pigeon', 'Il reste quelque chose dans le frigo ?', '2026-09-01', '/img/helene.png'),
+    ('David', 'Daviflex', 1, 'Faignant', 10000, 'L', true, 'GourmHélène', 'lit', 'JS', 1, 40, 'Code plus vite que son ombre, surtout quand la console reste vide.', 'inconnu', 2, 90, 'Lancez une pièce. Si c''est pile, personne ne sait ce qui se passe.', 'Requin', 'Ça marche sur ma machine !', '2026-09-01', '/img/mon_avatars.png'),
+    ('Melle', 'Mellekwondo', 1, 'Combat', 110, 'S', false, 'Mellekwondan', 'tatami', 'SQL', 2, 60, 'SELECT * FROM adversaire WHERE pv > 0, puis DELETE sur le résultat.', 'high kick', 3, 100, 'Un high kick qui fait trembler toutes les jointures.', 'WC sale', 'On règle ça sur le tatami.', '2026-09-01', '/img/melle.png'),
+    ('Samba', 'Sambacool', 1, 'Calinou', 130, 'L', false, 'Sambazen', 'sahel', 'Java', 2, 50, 'Lance la JVM. Pendant le démarrage, prend un thé.', 'Câlin réparateur', 1, 0, 'Fait un câlin à l''adversaire. Les deux Pokémon récupèrent 30 PV.', 'La faim', 'On mange quand ?', '2026-09-01', '/img/samba.png'),
+    ('Jonathan', 'Jonathanaconda', 1, 'Intelo', 100, 'M', false, 'Jonaconda Royal', 'Jupyter Notebook', 'Python', 2, 60, 'Importe une bibliothèque qui fait tout le travail à sa place.', 'Indentation parfaite', 1, 40, 'Aligne son code au pixel près. L''adversaire est désorienté.', 'Point-virgule', 'Il y a une lib pour ça.', '2026-09-01', '/img/jonathan.png'),
+    ('Raphael', 'Raphaquetion', 1, 'Sherlock', 90, 'L', false, 'Raphaquetion Holmes', 'Scène de crime', 'Python', 2, 50, 'Trouve le bug rien qu''en regardant l''écran.', 'Déduction', 2, 70, 'Devine la prochaine attaque de l''adversaire et l''annule.', 'Genoux', 'Élémentaire, mon cher Python.', '2026-09-01', '/img/raphael.png'),
+    ('Thibault', 'Thibauté', 1, 'Basketator', 110, 'L', false, 'Thibaudunk', 'le perimetre', 'JS', 1, 40, 'Ajoute un framework JavaScript. Puis un autre.', 'Tir à trois points', 3, 90, 'Tir derrière la ligne. Lancez une pièce : si c''est pile, le RER B est en retard et l''attaque échoue.', 'RER B', 'Le RER B est encore en retard.', '2026-09-01', '/img/thibault.png'),
+    ('Matthieu', 'ruelef', 1, 'Patriote', 120, 'L', false, 'Françosse', 'la france', 'Baguette.js', 2, 40, 'Code en français, noms de variables compris.', 'Pedaler', 2, 70, 'Pédale jusqu''au combat. Sa prochaine attaque coûte une étoile de moins.', 'Moules', 'Vive la France !', '2026-09-01', '/img/matthieu.png'),
+    ('Viviane', 'Vivimachette', 1, 'Machetero', 100, 'M', false, 'Vivimachetor', 'armurie', 'Java', 2, 50, 'Découpe un monolithe Java en microservices.', 'Tranchant', 2, 80, 'Coup de machette. Coupe court à toute réunion trop longue.', 'Lame émoussée', 'On tranche ?', '2026-09-01', '/img/viviane.png'),
+    ('Steve', 'Stevein''viz', 1, 'Phantom', 90, 'M', true, 'Spectre''viz', 'penombre', 'C# Rust', 3, 90, 'Réécrit tout le projet en Rust. Plus aucun bug mémoire, plus aucun collègue qui comprend.', 'Invisibilité', 1, 50, 'Disparaît dans la pénombre. Arrive en retard mais frappe en premier.', 'Ponctualité', 'J''arrive dans cinq minutes.', '2026-09-01', '/img/steve.png');
+
+COMMIT;
