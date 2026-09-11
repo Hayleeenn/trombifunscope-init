@@ -19,7 +19,7 @@ public class StudentDao {
      * premier test : si elle répond, c'est que la base tourne et est accessible depuis ce projet.
      */
     public int count() throws SQLException {
-        String sql = "SELECT count(*) as nbr_student FROM student";
+        String sql = "SELECT count(*) as nbr_student FROM t_student";
 
         try (Connection connection = Database.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
