@@ -15,15 +15,15 @@ public class Main {
     private static final StudentDao dao = new StudentDao();
 
     public static void main(String[] args) {
-        System.out.println("=== Trombifunscope ===");
+        System.out.println("\n=== Trombifunscope ===\n");
 
         try {
             System.out.println("Liaison établie. Test : " + dao.count()
                     + " ligne(s) dans la table student.");
 
             // US 6 — consulter une fiche par prénom
-            System.out.println("--- Fiche filtrée par prénom (Raphael) ---");
-            Student found = dao.findByFirstName("Raphael");
+            System.out.println("\n## US 6 - consulter une fiche par prénom ##\n");
+            Student found = dao.findByFirstName("Dominga");
             if (found == null) {
                 System.out.println("Aucune fiche pour ce prénom.");
             } else {
@@ -32,6 +32,7 @@ public class Main {
             System.out.println();
 
             // US 7 — Lister toutes les fiches
+            System.out.println("\n## US 7 - Lister toutes les fiches ##\n");
             List<Student> students = dao.getStudents();
             for (Student student : students) {
                 System.out.println(student);
@@ -47,22 +48,22 @@ public class Main {
             return;
         }
         System.out.println(s);
-        System.out.println("  type=" + s.getType().getLabel()
-                + ", niveau=" + s.getLevel()
-                + ", PV=" + s.getHealthPoint()
-                + ", taille=" + s.getHeight()
-                + ", volant=" + s.isFlying());
+        System.out.println(" - type=" + s.getType().getLabel()
+                + ",\n - niveau=" + s.getLevel()
+                + ",\n - PV=" + s.getHealthPoint()
+                + ",\n - taille=" + s.getHeight()
+                + ",\n - volant=" + s.isFlying());
         System.out.println("  évolution=" + s.getEvolution()
-                + ", milieu=" + s.getNaturalEnvironment());
-        System.out.println("  don=" + s.getGift()
-                + " (coût " + s.getGiftCost() + ", dégâts " + s.getGiftDamage() + ") — "
+                + ",\n - milieu=" + s.getNaturalEnvironment());
+        System.out.println("\n - don=" + s.getGift()
+                + " (coût " + s.getGiftCost() + ",\n - dégâts " + s.getGiftDamage() + ") — "
                 + s.getGiftText());
-        System.out.println("  force=" + s.getStrength()
-                + " (coût " + s.getStrengthCost() + ", dégâts " + s.getStrengthDamage() + ") — "
+        System.out.println("\n - force=" + s.getStrength()
+                + " (coût " + s.getStrengthCost() + ",\n dégâts " + s.getStrengthDamage() + ") — "
                 + s.getStrengthText());
-        System.out.println("  faiblesse=" + s.getWeakness()
-                + ", citation=\"" + s.getQuote() + "\""
-                + ", capture=" + s.getCatchDate()
-                + ", avatar=" + s.getAvatarUrl());
+        System.out.println(" - faiblesse=" + s.getWeakness()
+                + ",\n - citation=\"" + s.getQuote() + "\""
+                + ",\n - capture=" + s.getCatchDate()
+                + ",\n - avatar=" + s.getAvatarUrl());
     }
 }
