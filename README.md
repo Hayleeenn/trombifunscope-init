@@ -5,6 +5,9 @@ contient de quoi faire tourner un programme Java qui parle à PostgreSQL, et rie
 Pour le moment il ne marche pas : à vous de le configurer pour qu'il fonctionne avec la base
 de données que vous aurez créée.
 
+Pour monter la base, configurer la connexion et lancer le programme : voir
+[`QUICKSTART.md`](QUICKSTART.md).
+
 ## Ce qui vous est fourni
 
 | Fichier | Ce qu'il fait                                                                                      |
@@ -32,7 +35,7 @@ poste. Sa copie d'exemple, elle, est dans le dépôt.
 
 Le pilote JDBC est dans `lib/`, mais il n'est branché nulle part : à vous de le mettre au
 classpath. Sous IntelliJ, clic droit sur `lib/postgresql-42.7.9.jar` dans l'arborescence de
-gauche → **Add as Library…** → OK. 
+gauche → **Add as Library…** → OK.
 
 Sans ça, le projet compile très bien et échoue au lancement sur `No suitable driver found`.
 
