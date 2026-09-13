@@ -20,6 +20,8 @@ public class Main {
         System.out.println("\n=== Trombifunscope ===\n");
 
         try {
+
+            // Initialisation de la base de données avec la méthode count()
             System.out.println("Liaison établie. Test : " + dao.count()
                     + " ligne(s) dans la table student.");
 
@@ -83,23 +85,25 @@ public class Main {
         if (s == null) {
             return;
         }
+        String typeLabel = s.getType() == null ? "?" : s.getType().getLabel();
+
         System.out.println(s);
-        System.out.println(" - type=" + s.getType().getLabel()
-                + ",\n - niveau=" + s.getLevel()
-                + ",\n - PV=" + s.getHealthPoint()
-                + ",\n - taille=" + s.getHeight()
-                + ",\n - volant=" + s.isFlying());
-        System.out.println("  évolution=" + s.getEvolution()
-                + ",\n - milieu=" + s.getNaturalEnvironment());
-        System.out.println("\n - don=" + s.getGift()
-                + " (coût " + s.getGiftCost() + ",\n - dégâts " + s.getGiftDamage() + ") — "
+        System.out.println("  type      = " + typeLabel);
+        System.out.println("  niveau    = " + s.getLevel());
+        System.out.println("  PV        = " + s.getHealthPoint());
+        System.out.println("  taille    = " + s.getHeight());
+        System.out.println("  volant    = " + s.isFlying());
+        System.out.println("  évolution = " + s.getEvolution());
+        System.out.println("  milieu    = " + s.getNaturalEnvironment());
+        System.out.println("  don       = " + s.getGift()
+                + " (coût " + s.getGiftCost() + ", dégâts " + s.getGiftDamage() + ") — "
                 + s.getGiftText());
-        System.out.println("\n - force=" + s.getStrength()
-                + " (coût " + s.getStrengthCost() + ",\n dégâts " + s.getStrengthDamage() + ") — "
+        System.out.println("  force     = " + s.getStrength()
+                + " (coût " + s.getStrengthCost() + ", dégâts " + s.getStrengthDamage() + ") — "
                 + s.getStrengthText());
-        System.out.println(" - faiblesse=" + s.getWeakness()
-                + ",\n - citation=\"" + s.getQuote() + "\""
-                + ",\n - capture=" + s.getCatchDate()
-                + ",\n - avatar=" + s.getAvatarUrl());
+        System.out.println("  faiblesse = " + s.getWeakness());
+        System.out.println("  citation  = \"" + s.getQuote() + "\"");
+        System.out.println("  capture   = " + s.getCatchDate());
+        System.out.println("  avatar    = " + s.getAvatarUrl());
     }
 }

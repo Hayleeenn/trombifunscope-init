@@ -13,13 +13,13 @@ import model.PokemonType;
 import model.Student;
 
 /**
- * Une seule méthode vous est donnée, count(). Inspirez-vous de cet exemple pour
- * écrire
- * les quatre opérations que le PO vous demande (ajouter, consulter, corriger,
- * retirer).
+ * Une seule méthode vous est donnée, count().
+ * Inspirez-vous de cet exemple pour
+ * écrire les quatre opérations que le PO vous demande
+ * (ajouter, consulter, corriger, retirer).
  *
- * Le fonctionnement d'un PreparedStatement est expliqué dans le README de ce
- * dossier.
+ * Le fonctionnement d'un PreparedStatement est expliqué
+ * dans le README de ce dossier.
  */
 public class StudentDao {
 
@@ -48,84 +48,6 @@ public class StudentDao {
     /**
      * US 5 — Permet d'ajouter une fiche.
      */
-
-
-    /**
-     * US 6 — Récupère une fiche en filtrant par le prénom (first_name).
-     */
-    public Student findByFirstName(String firstName) throws SQLException {
-        String sql = "SELECT " + SELECT_COLUMNS + " FROM t_student WHERE first_name = ?";
-
-        try (Connection connection = Database.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, firstName);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    return mapRow(resultSet);
-                }
-                return null;
-            }
-        }
-    }
-
-
-    /**
-     * US 7 — Récupère toutes les fiches.
-     */
-
-    public List<Student> getStudents() throws SQLException {
-        String sql = "SELECT * FROM t_student ORDER BY id";
-        List<Student> students = new ArrayList<>();
-
-        try (Connection connection = Database.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql);
-                ResultSet resultSet = statement.executeQuery()) {
-
-            while (resultSet.next()) {
-                students.add(mapRow(resultSet));
-            }
-        }
-        return students;
-    }
-
-    /**
-     * US 8 — Permet de modifier une fiche en filtrant par l'id (id).
-     */
-
-
-    /**
-     * US 9 — Permet de Supprimer une fiche.
-     */
-
-
-    /** Transforme une ligne du ResultSet en Student. */
-    private Student mapRow(ResultSet resultSet) throws SQLException {
-        return new Student(
-                resultSet.getLong("id"),
-                resultSet.getString("first_name"),
-                resultSet.getString("pokemon_name"),
-                resultSet.getObject("level", Integer.class),
-                PokemonType.fromLabel(resultSet.getString("type")),
-                resultSet.getObject("health_point", Integer.class),
-                PokemonHeight.fromLabel(resultSet.getString("height")),
-                resultSet.getBoolean("is_flying"),
-                resultSet.getString("evolution"),
-                resultSet.getString("natural_environment"),
-                resultSet.getString("gift"),
-                resultSet.getObject("gift_cost", Integer.class),
-                resultSet.getObject("gift_damage", Integer.class),
-                resultSet.getString("gift_text"),
-                resultSet.getString("strength"),
-                resultSet.getObject("strength_cost", Integer.class),
-                resultSet.getObject("strength_damage", Integer.class),
-                resultSet.getString("strength_text"),
-                resultSet.getString("weakness"),
-                resultSet.getString("quote"),
-                resultSet.getObject("catch_date", LocalDate.class),
-                resultSet.getString("avatar_url"));
-    }
-
-
     public void add(Student student) throws SQLException {
         String sql = """
         INSERT INTO t_student (
@@ -269,10 +191,79 @@ public class StudentDao {
         }
     }
 
+    /**
+     * US 6 — Récupère une fiche en filtrant par le prénom (first_name).
+     */
+    public Student findByFirstName(String firstName) throws SQLException {
+        String sql = "SELECT " + SELECT_COLUMNS + " FROM t_student WHERE first_name = ?";
+
+        try (Connection connection = Database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, firstName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return mapRow(resultSet);
+                }
+                return null;
+            }
+        }
+    }
 
 
+    /**
+     * US 7 — Récupère toutes les fiches.
+     */
+
+    public List<Student> getStudents() throws SQLException {
+        String sql = "SELECT * FROM t_student ORDER BY id";
+        List<Student> students = new ArrayList<>();
+
+        try (Connection connection = Database.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                students.add(mapRow(resultSet));
+            }
+        }
+        return students;
+    }
+
+    /**
+     * US 8 — Permet de modifier une fiche en filtrant par l'id (id).
+     */
 
 
+    /**
+     * US 9 — Permet de Supprimer une fiche.
+     */
 
+
+    /** Transforme une ligne du ResultSet en Student. */
+    private Student mapRow(ResultSet resultSet) throws SQLException {
+        return new Student(
+                resultSet.getLong("id"),
+                resultSet.getString("first_name"),
+                resultSet.getString("pokemon_name"),
+                resultSet.getObject("level", Integer.class),
+                PokemonType.fromLabel(resultSet.getString("type")),
+                resultSet.getObject("health_point", Integer.class),
+                PokemonHeight.fromLabel(resultSet.getString("height")),
+                resultSet.getBoolean("is_flying"),
+                resultSet.getString("evolution"),
+                resultSet.getString("natural_environment"),
+                resultSet.getString("gift"),
+                resultSet.getObject("gift_cost", Integer.class),
+                resultSet.getObject("gift_damage", Integer.class),
+                resultSet.getString("gift_text"),
+                resultSet.getString("strength"),
+                resultSet.getObject("strength_cost", Integer.class),
+                resultSet.getObject("strength_damage", Integer.class),
+                resultSet.getString("strength_text"),
+                resultSet.getString("weakness"),
+                resultSet.getString("quote"),
+                resultSet.getObject("catch_date", LocalDate.class),
+                resultSet.getString("avatar_url"));
+    }
 
 }
